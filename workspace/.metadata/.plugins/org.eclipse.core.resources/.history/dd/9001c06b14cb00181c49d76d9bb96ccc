@@ -1,0 +1,97 @@
+//By: Brayton Kerekffy
+import java.util.Scanner;
+import java.io.*; 
+public class main {
+	public static void main(String args[]) throws Exception
+    {
+		StringBuilder sb = new StringBuilder();
+		File file = new File("C:\\Users\\kerek\\Desktop\\piglatin.txt"); 
+		Scanner input = new Scanner(file);
+		//System.out.println("Enter:");
+		//BufferedReader br = new BufferedReader(reader); 
+	
+		//Boolean isReadable = true;
+		String pigLatin = "";
+		String midWord;
+		String consonant = "";
+		//String vowels = "AEIOU";
+		char upper;
+		char firstChar = 0;
+		int wordCounter = 0;
+		Boolean consonantPig = false;
+	
+		//System.out.printf("%-10s%-10s\n", pig, pigLatin);
+		  
+		//char[] vowelCharArrConverter = vowels.toCharArray();
+		while(input.hasNext()){
+			midWord = "";
+			Boolean vowelPig = true;
+			Boolean isConsonant = false;
+			int counter = 0;
+			String inputOutString;
+			//String pig = br.next();
+			String word = input.next();
+			//if (pig == null){
+				//isReadable = false;
+			//}
+			//String[] words = pig.split(" ");
+			char[] inputCharArrConverter = word.toCharArray();
+			for(char inputOut : inputCharArrConverter){
+				consonantPig = false;
+				counter++;
+				inputOut = Character.toUpperCase(inputOut);
+				//System.out.println(counter);
+			
+				//for(char vowelOut : vowelCharArrConverter){
+				if(counter == 1){
+					firstChar = inputOut;
+					if(inputOut == 'A' || inputOut == 'E' || inputOut == 'I' || inputOut == 'O' || inputOut == 'U'){
+						//if(counter == 1){
+							pigLatin = word.toUpperCase() + "WAY";
+							//System.out.println(pigLatin);
+							//System.out.printf("%-10s%-10s\n", pig, pigLatin);
+							vowelPig = false;
+							break;
+						}
+				}
+				if(counter == 2){
+					consonant = String.valueOf(firstChar) + String.valueOf(inputOut);
+					//midWord = midWord + consonant;
+					if(consonant.equals("BR") || consonant.equals("CH") || consonant.equals("CL") || consonant.equals("CR") || consonant.equals("BL") || consonant.equals("DR") || consonant.equals("FL") || consonant.equals("FR") || consonant.equals("GL") || consonant.equals("GR") || consonant.equals("PL") || consonant.equals("PR") || consonant.equals("SC") || consonant.equals("SH") || consonant.equals("SK") || consonant.equals("SL") || consonant.equals("SM") || consonant.equals("SN") || consonant.equals("SP") || consonant.equals("ST") || consonant.equals("SW") || consonant.equals("TH") || consonant.equals("TR") || consonant.equals("TW") || consonant.equals("WH")){
+						//System.out.print("yay!");
+						consonantPig = true;
+						isConsonant = true;
+						//break;
+						}
+					else{
+						midWord = midWord + inputOut;
+					}
+				}
+				if(counter > 2){
+					if(consonantPig == true){
+						System.out.print("skip!");
+						break;
+					}
+					else{
+						//midWord = midWord + String.valueOf(inputOut);
+						midWord = midWord + inputOut;
+						//pigLatin = pigLatin + String.valueOf(inputOut);
+						//break;
+					}
+						}
+			//}
+		}
+			if(vowelPig != false){
+				if(isConsonant == true){
+					//System.out.print("consonant!");
+					pigLatin = midWord + consonant + "AY";
+				}
+				else{
+					//System.out.print("regular!");
+					pigLatin = midWord + firstChar + "AY";
+				}
+			}
+			System.out.printf("%-10s%-10s\n", word, pigLatin);
+			wordCounter++;
+	}
+    }}

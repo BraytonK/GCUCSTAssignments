@@ -1,0 +1,24 @@
+//This is a calculator that converts from Fahrenheit to Celsius then vice-versa
+//Created by: Brayton Kerekffy
+//Created for: GCU CST105 Project 2
+import java.util.Scanner;
+public class main {
+    public static void main(String args[])
+    {
+        double fah;
+        double cel;
+        double resultCel;
+        double resultFah;
+        Scanner input = new Scanner(System.in);
+        
+        System.out.print("Enter a Fahrenheit temperature: ");
+        fah = input.nextDouble();
+        resultCel = (fah - 32)*5/9;
+        System.out.println(fah + "f " + "is equivalent to " + resultCel );
+        
+        System.out.print("Enter a Celsius temperature: ");
+        cel = input.nextDouble();
+        System.out.println("The sum of the digits is: " + cel);
+    }
+	
+}
