@@ -1,0 +1,40 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+public class main extends Application {
+
+ @Override
+ public void start(Stage primaryStage) {
+  Pane pane = new Pane();
+  int i = 0;
+  int j = 0;
+  int levelUp = 0;
+   for(j = 0; j < 16; j++) {
+	if(j % 8 == 0){
+		levelUp = 0;;
+	}
+    Rectangle rec = new Rectangle(20 * j, 20 * i, 20, 20);
+    if(i + j % 2 == 1) {
+     rec.setFill(Color.BLACK);
+    } else {
+     rec.setFill(Color.WHITE);
+    }
+    
+    pane.getChildren().add(rec);
+    levelUp++;
+   }
+  
+  Scene scene = new Scene(pane, 160, 160);
+  primaryStage.setTitle("Checkboard");
+  primaryStage.setScene(scene);
+  primaryStage.show();
+ }
+
+ public static void main(String[] args) {
+  launch(args);
+ }
+}
