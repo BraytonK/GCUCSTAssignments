@@ -1,0 +1,46 @@
+
+public class main {
+	public static void main(String[] args){
+		
+		int[] nums = new int[10000];
+		for(int counter=0;counter<10000;){
+			System.out.print(nums[counter]);
+			if(checkPrime(counter) == true && checkPalidromic(counter) == true){
+				System.out.println(nums[counter] + " is Palidromic Prime");
+			}
+			counter++;
+		}
+	}
+	public static boolean checkPrime(int number){
+	    if (number % 2 == 0 && number != 2) {
+	        return false;
+	    }
+
+	    int primeSqrt = (int)Math.sqrt(number);
+	    int counter = 3;
+	    while(counter <= primeSqrt){
+	    	if (number % counter == 0) {
+	            return false;
+	        }
+	    	counter +=2;
+	    }
+
+	    return true;
+	}
+	public static boolean checkPalidromic(int number) {
+		int back = 0;
+	    int mark = number;
+
+	    while (number > 0) {
+	        int p = number % 10;
+	        back = back * 10 + p;
+	        number = number / 10;
+	    }
+
+	    if(mark == back){
+	    	return false;
+	    }
+	    return true;
+	}     
+	
+}

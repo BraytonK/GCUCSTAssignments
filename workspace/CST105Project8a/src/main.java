@@ -1,0 +1,48 @@
+//By: Brayton Kerekffy
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.geometry.Insets;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class main extends Application {
+	@Override // Override the start method in the Application class
+	public void start(Stage primaryStage) throws FileNotFoundException {
+		Integer[] cardPick = new Integer[52];
+		for (int i = 0; i < cardPick.length; i++) { 
+		    cardPick[i] = i; 
+		} 
+		ArrayList<Integer> list = new ArrayList<>(Arrays.asList(cardPick));
+		java.util.Collections.shuffle(list);
+		Pane pane = new HBox(10);
+		pane.setPadding(new Insets(5,5,5,5));
+		int i = 1;
+		Image image = new Image(new FileInputStream("C:\\Users\\kerek\\Downloads\\book\\book\\image\\card\\" + list.get(i) + ".png"));
+		pane.getChildren().add(new ImageView(image));
+		i++;
+		Image image1 = new Image(new FileInputStream("C:\\Users\\kerek\\Downloads\\book\\book\\image\\card\\" + list.get(i) + ".png"));
+		ImageView imageView2 = new ImageView(image1);
+		imageView2.setFitHeight(100);
+		imageView2.setFitWidth(100);
+		pane.getChildren().add(imageView2);
+		i++;
+		Image image2 = new Image(new FileInputStream("C:\\Users\\kerek\\Downloads\\book\\book\\image\\card\\" + list.get(i) + ".png"));
+		ImageView imageView3 = new ImageView(image2);
+		pane.getChildren().add(imageView3);
+		// Create a scene and place it in the stage
+		Scene scene = new Scene(pane);
+		primaryStage.setTitle("ShowImage");// Set the stage title
+		primaryStage.setScene(scene); // Place the scene in the stage
+		primaryStage.show(); // Display the stage
+	}
+}
+
