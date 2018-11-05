@@ -1,12 +1,56 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 //By: Brayton Kerekffy for Milestone 2 and Milestone 3 and Milestone 4
-public class main{
-	
-	public static void main(String[] args){
-		NFLPlayerManager playerManager = new NFLPlayerManager(); 
-		playerManager.printArr();
+public class main extends Application{
+		public void start(Stage primaryStage) {
+			final NFLPlayerManager playerManager = new NFLPlayerManager();
+			GridPane pane = new GridPane();
+			pane.setAlignment(Pos.CENTER);
+			pane.setPadding(new Insets(11.5, 12.5, 13.5, 14.5));
+			pane.setHgap(5.5);
+			pane.setVgap(5.5);
+			pane.add(new Label("Welcome to the roster! - (~ROSTER.INC~)"), 1, 0);
+			pane.add(new Label("Click on name to add to roster!"), 1, 1);
+			pane.add(new TextField(), 1, 8);
+			Button btAdd = new Button("Delete From Personal Roster");
+			pane.add(btAdd, 2, 8);
+			GridPane.setHalignment(btAdd, HPos.RIGHT);
+			
+			int x = 0;
+			int y = 2;
+			
+			for(int i = 0; i < playerManager.arr.size(); i++){
+				if(i%2==0){
+					x=0;
+					y++;
+				}
+		        Button button = new Button(playerManager.arr.get(i)+" ");
+		        pane.add(button, x, y, 1, 1);
+		        x++;
+			}
+	        
+	        primaryStage.setTitle("GridPane Experiment");
+	        Scene scene = new Scene(pane, 240, 100);
+	        primaryStage.setScene(scene);
+	        primaryStage.show();
 	}
 	
 	public static abstract class NFLPlayers{
@@ -83,7 +127,7 @@ public class main{
 			return age / yearsActive;
 		}
 		public String toString(){
-			return "my name is " + player + " and I am " + position;
+			return player + " (" + position + ")";
 		}
 	    public void setAge(int age) {
 	        this.age = age;
@@ -177,4 +221,3 @@ public class main{
 		}
 	}
 }
-	
